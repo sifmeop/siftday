@@ -1,0 +1,7 @@
+.cart {
+  @apply flex items-center gap-2 rounded-md bg-primary-orange px-4 py-2 text-white transition-colors duration-300 hover:bg-primary-orange-hover active:bg-primary-orange-active;
+}
+
+.amount {
+  @apply font-inter text-xl font-semibold text-primary-orange;
+}

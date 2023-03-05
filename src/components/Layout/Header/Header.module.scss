@@ -1,0 +1,16 @@
+.header {
+  @apply z-10 bg-white;
+}
+
+.headerContainer {
+  @apply flex items-center justify-between py-4;
+}
+
+.logo {
+  @apply flex items-center gap-2;
+}
+
+.title {
+  @apply text-2xl;
+  font-family: 'Ubuntu';
+}

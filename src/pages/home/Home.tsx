@@ -1,5 +1,7 @@
+import { NavLink } from 'react-router-dom'
+
 const Home = () => {
-  return <div>Home</div>
+  return <NavLink to='/cart'>go to Cart</NavLink>
 }
 
 export default Home

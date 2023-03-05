@@ -1,5 +1,7 @@
+import { NavLink } from 'react-router-dom'
+
 const Cart = () => {
-  return <div>Cart</div>
+  return <NavLink to='/'>go to home</NavLink>
 }
 
 export default Cart
