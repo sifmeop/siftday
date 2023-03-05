@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { Drink } from 'types/drink.interface'
 import { Pizza } from 'types/pizza.interface'
-import { Sauce } from 'types/sauce.inteface'
+import { Sauce } from 'types/sauce.interface'
 
 interface CartState {
   cart: Pizza[] | Drink[] | Sauce[]
@@ -17,7 +17,8 @@ const slice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    // addProduct
+    // addProduct: (state, payload: PayloadAction<{}>) => {
+    // }
     // removeProduct
   }
 })

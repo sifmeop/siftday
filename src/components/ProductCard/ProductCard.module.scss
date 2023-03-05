@@ -1,0 +1,53 @@
+.card {
+  @apply w-[18.75rem] rounded-xl border border-[#f0f0f0] bg-white shadow-md transition-transform duration-300;
+  &:hover {
+    @apply cursor-pointer shadow-lg;
+    cursor: pointer;
+    transform: scale(1.03);
+  }
+  @media (max-width: 425px) {
+  }
+}
+
+.imageWrapper {
+  @apply h-[18.75rem] border-b border-[#f0f0f0];
+}
+
+.image {
+  @apply block h-full w-full object-cover;
+}
+
+.info {
+  @apply p-5;
+}
+
+.title {
+  @apply mb-3 text-lg font-semibold;
+}
+
+.ingredients {
+  @apply mb-3 line-clamp-1;
+}
+
+.bottom {
+  @apply mt-auto flex items-center justify-between gap-3;
+}
+
+.price {
+  @apply text-lg font-semibold text-primary-orange;
+}
+
+@media (max-width: 1024px) {
+  .card {
+    @apply w-full;
+  }
+}
+
+@media (max-width: 768px) {
+  .image {
+    object-fit: contain;
+  }
+  .info {
+    @apply p-3;
+  }
+}

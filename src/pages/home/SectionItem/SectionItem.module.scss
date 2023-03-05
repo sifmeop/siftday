@@ -1,0 +1,20 @@
+.section:not(:last-child) {
+  @apply mb-12;
+}
+
+.products {
+  @apply grid grid-cols-4 justify-items-center gap-[1.875rem];
+  @media (max-width: 1024px) {
+    @apply grid-cols-3 gap-5;
+  }
+  @media (max-width: 768px) {
+    @apply grid-cols-2 gap-3;
+  }
+  @media (max-width: 425px) {
+    @apply grid-cols-1;
+  }
+}
+
+.title {
+  @apply mb-8 font-inter text-4xl font-semibold;
+}

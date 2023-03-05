@@ -6,18 +6,20 @@ import {
   DrawerFooter,
   DrawerHeader,
   DrawerOverlay,
-  Input,
   useDisclosure
 } from '@chakra-ui/react'
 
 import { useAppSelector } from 'hooks/useRedux'
 import { FaShoppingCart } from 'react-icons/fa'
+import { NavLink } from 'react-router-dom'
 import Button from 'ui/Button/Button'
 import { formatCurrency } from 'utils/formatCurrency'
 import styles from './Cart.module.scss'
+import CartProduct from './CartProduct/CartProduct'
 
 const Cart = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
+  const cart = useAppSelector((state) => state.cart.cart)
   const total = useAppSelector((state) => state.cart.total)
   const formattedAmount = formatCurrency(total)
 
@@ -34,17 +36,23 @@ const Cart = () => {
           <DrawerHeader fontSize='3xl' padding='5'>
             Ваше замовлення
           </DrawerHeader>
-
           <DrawerBody>
-            <Input placeholder='Type here...' />
+            {cart.length > 0 ? (
+              cart.map((product) => (
+                <CartProduct key={product.id} product={product} />
+              ))
+            ) : (
+              <h1>Замовлень немає</h1>
+            )}
           </DrawerBody>
-
           <DrawerFooter
             justifyContent='space-between'
             gap='0.625rem'
             borderTopWidth='1px'>
-            <h1 className={styles.amount}>Разом: {formattedAmount}</h1>
-            <Button label='Оформити замовлення' />
+            <div className={styles.amount}>Разом: {formattedAmount}</div>
+            <NavLink to='/cart' onClick={onClose}>
+              <Button label='Оформити замовлення' />
+            </NavLink>
           </DrawerFooter>
         </DrawerContent>
       </Drawer>
