@@ -1,10 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { Drink } from 'types/drink.interface'
-import { Pizza } from 'types/pizza.interface'
-import { Sauce } from 'types/sauce.interface'
+import { Product } from 'types/product.interface'
 
 interface CartState {
-  cart: Pizza[] | Drink[] | Sauce[]
+  cart: {
+    product: Product
+    quantity: number
+  }[]
   total: number
 }
 
@@ -19,7 +20,8 @@ const slice = createSlice({
   reducers: {
     // addProduct: (state, payload: PayloadAction<{}>) => {
     // }
-    // removeProduct
+    // removeProduct: (state, payload: PayloadAction<{}>) => {
+    // }
   }
 })
 

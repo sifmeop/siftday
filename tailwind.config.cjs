@@ -5,10 +5,11 @@ module.exports = {
     extend: {
       colors: {
         body: '#F9F9F9',
-        primary: '#191919',
-        'primary-orange': '#FF7010',
-        'primary-orange-hover': '#FF9146',
-        'primary-orange-active': '#FF6905'
+        primary: '#FF7010',
+        'primary-light': '#FF9146',
+        'primary-dark': '#FF6905',
+        secondary: '#191919',
+        red: '#E23535'
       }
     },
     fontFamily: {

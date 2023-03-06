@@ -1,21 +1,18 @@
 .ldsSpinner {
-  @apply relative h-20 w-20;
-  display: inline-block;
+  @apply relative inline-block h-20 w-20;
 }
 .ldsSpinner div {
   transform-origin: 40px 40px;
   animation: ldsSpinner 1.2s linear infinite;
 }
 .ldsSpinner div:after {
-  content: ' ';
-  display: block;
-  position: absolute;
+  @apply absolute block bg-primary;
+  content: '';
   top: 3px;
   left: 37px;
   width: 6px;
   height: 18px;
   border-radius: 20%;
-  background: #ff7010;
 }
 .ldsSpinner div:nth-child(1) {
   transform: rotate(0deg);

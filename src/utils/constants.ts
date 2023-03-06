@@ -1,1 +1,1 @@
-export const DB_URL = 'http://backend-siftday.vercel.app'
+export const DB_URL = 'https://backend-siftday.vercel.app'

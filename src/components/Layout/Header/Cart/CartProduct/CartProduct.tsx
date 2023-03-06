@@ -1,9 +1,7 @@
-import { Drink } from 'types/drink.interface'
-import { Pizza } from 'types/pizza.interface'
-import { Sauce } from 'types/sauce.interface'
+import { Product } from 'types/product.interface'
 
 interface Props {
-  product: Pizza | Drink | Sauce
+  product: Product
 }
 
 const CartProduct = ({ product }: Props) => {

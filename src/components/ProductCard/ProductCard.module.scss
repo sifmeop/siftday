@@ -1,12 +1,13 @@
 .card {
-  @apply w-[18.75rem] rounded-xl border border-[#f0f0f0] bg-white shadow-md transition-transform duration-300;
+  @apply relative w-[18.75rem] rounded-xl border border-[#f0f0f0] bg-white shadow-md transition-transform duration-300;
   &:hover {
-    @apply cursor-pointer shadow-lg;
-    cursor: pointer;
-    transform: scale(1.03);
+    @apply scale-[1.03] cursor-pointer shadow-lg;
   }
-  @media (max-width: 425px) {
-  }
+}
+
+.note {
+  @apply absolute top-5 rounded-r-md bg-red px-3 py-1 font-inter text-white;
+  left: -1px;
 }
 
 .imageWrapper {
@@ -14,18 +15,18 @@
 }
 
 .image {
-  @apply block h-full w-full object-cover;
+  @apply block h-full w-full  rounded-t-xl object-cover;
 }
 
 .info {
-  @apply p-5;
+  padding: 1.25rem;
 }
 
 .title {
   @apply mb-3 text-lg font-semibold;
 }
 
-.ingredients {
+.description {
   @apply mb-3 line-clamp-1;
 }
 
@@ -34,12 +35,12 @@
 }
 
 .price {
-  @apply text-lg font-semibold text-primary-orange;
+  @apply text-lg font-semibold text-primary;
 }
 
 @media (max-width: 1024px) {
   .card {
-    @apply w-full;
+    width: 100%;
   }
 }
 
@@ -48,6 +49,6 @@
     object-fit: contain;
   }
   .info {
-    @apply p-3;
+    padding: 0.75rem;
   }
 }
