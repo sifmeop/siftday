@@ -1,0 +1,17 @@
+.errorWrapper {
+  @apply mx-auto w-full max-w-lg rounded-xl bg-white p-5 text-center;
+  &:not(:last-child) {
+    margin-bottom: 1.25rem;
+  }
+}
+
+.icon {
+  @apply mx-auto h-10 w-10 text-red;
+}
+
+.message {
+  @apply text-xl;
+  @media (max-width: 425px) {
+    @apply text-base;
+  }
+}

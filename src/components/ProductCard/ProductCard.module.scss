@@ -6,7 +6,7 @@
 }
 
 .note {
-  @apply absolute top-5 rounded-r-md bg-red px-3 py-1 font-inter text-white;
+  @apply absolute top-5 rounded-r-md bg-red px-4 py-1 font-inter text-white;
   left: -1px;
 }
 
@@ -19,15 +19,15 @@
 }
 
 .info {
-  padding: 1.25rem;
+  @apply p-5;
 }
 
 .title {
-  @apply mb-3 text-lg font-semibold;
+  @apply mb-2 text-lg font-semibold;
 }
 
 .description {
-  @apply mb-3 line-clamp-1;
+  @apply mb-2 line-clamp-1;
 }
 
 .bottom {

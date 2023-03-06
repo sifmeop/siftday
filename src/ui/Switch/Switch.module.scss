@@ -1,0 +1,11 @@
+.switch {
+  @apply flex items-center rounded-md border border-[#F0F0F0] bg-white text-center;
+}
+
+.label {
+  @apply w-full cursor-pointer py-2.5 px-5;
+}
+
+.active {
+  @apply rounded-md bg-primary text-white;
+}

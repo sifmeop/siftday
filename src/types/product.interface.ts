@@ -6,3 +6,6 @@ export interface Product {
   price: number
   note?: string
 }
+
+export type ProductCategory = 'Піца' | 'Соуси' | 'Напої'
+export type ProductType = 'pizza' | 'sauce' | 'drink'

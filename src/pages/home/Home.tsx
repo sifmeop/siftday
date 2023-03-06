@@ -1,11 +1,16 @@
+import { products } from 'utils/products'
 import SectionItem from './SectionItem/SectionItem'
 
 const Home = () => {
   return (
     <>
-      <SectionItem title='Піца' type='pizza' />
-      <SectionItem title='Соуси' type='drink' />
-      <SectionItem title='Напої' type='sauce' />
+      {products.map((product) => (
+        <SectionItem
+          key={product.id}
+          category={product.category}
+          type={product.type}
+        />
+      ))}
     </>
   )
 }

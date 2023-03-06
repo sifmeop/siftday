@@ -1,0 +1,31 @@
+.modalBody {
+  @apply flex items-center justify-center gap-10;
+}
+
+.note {
+  @apply absolute top-5 left-0 rounded-r-md bg-red px-4 py-1 font-inter text-white;
+}
+
+.sectionInfo {
+  @apply flex w-1/2 flex-col gap-5;
+}
+
+.title {
+  @apply font-inter text-xl font-semibold;
+}
+
+.imageWrapper {
+  @apply h-80 w-1/2;
+}
+
+.image {
+  @apply block h-full w-full  rounded-t-xl object-contain;
+}
+
+.total {
+  @apply font-inter text-xl font-semibold text-primary;
+}
+
+.modalFooter {
+  @apply flex items-center gap-3;
+}

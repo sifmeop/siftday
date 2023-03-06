@@ -1,16 +1,19 @@
+import { ProductCategory, ProductType } from 'types/product.interface'
+
 import ProductCard from 'components/ProductCard/ProductCard'
 import { memo } from 'react'
 import { useGetProductsQuery } from 'store/api/sifdayDB'
 import Loader from 'ui/Loader/Loader'
 import { labelForLoader } from 'utils/labelForLoader'
+import CategoryError from './CategoryError/CategoryError'
 import styles from './SectionItem.module.scss'
 
 interface Props {
-  title: string
-  type: 'pizza' | 'sauce' | 'drink'
+  category: ProductCategory
+  type: ProductType
 }
 
-const SectionItem = ({ title, type }: Props) => {
+const SectionItem = ({ category, type }: Props) => {
   const { data: products, isLoading, isError } = useGetProductsQuery({ type })
 
   if (isLoading) {
@@ -18,20 +21,20 @@ const SectionItem = ({ title, type }: Props) => {
   }
 
   if (isError) {
-    return
+    return <CategoryError category={category} />
   }
 
-    return products ? (
-      <section className={styles.section}>
-        <h1 className={styles.title}>{title}</h1>
-        <div className={styles.products}>
-          {products &&
-            products.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-        </div>
-      </section>
-    ) : null
+  return products ? (
+    <section className={styles.section}>
+      <h1 className={styles.category}>{category}</h1>
+      <div className={styles.products}>
+        {products &&
+          products.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
+      </div>
+    </section>
+  ) : null
 }
 
 export default memo(SectionItem)

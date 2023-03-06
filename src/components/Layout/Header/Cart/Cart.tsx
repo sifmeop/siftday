@@ -39,7 +39,7 @@ const Cart = () => {
           <DrawerBody>
             {cart.length > 0 ? (
               cart.map((product) => (
-                <CartProduct key={product.id} product={product} />
+                <CartProduct key={product.product.id} product={product} />
               ))
             ) : (
               <h1>Замовлень немає</h1>
