@@ -14,6 +14,10 @@
   @apply font-inter text-xl font-semibold;
 }
 
+.description {
+  @apply font-inter text-lg;
+}
+
 .imageWrapper {
   @apply h-80 w-1/2;
 }

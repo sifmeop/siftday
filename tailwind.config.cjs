@@ -7,9 +7,11 @@ module.exports = {
         body: '#F9F9F9',
         primary: '#FF7010',
         'primary-light': '#FF9146',
+        'primary-more-light': '#FFEEE2',
         'primary-dark': '#FF6905',
         secondary: '#191919',
-        red: '#E23535'
+        red: '#E23535',
+        gray: '#F0F0F0'
       }
     },
     fontFamily: {

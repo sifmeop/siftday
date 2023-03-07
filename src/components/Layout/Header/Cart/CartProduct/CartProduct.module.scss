@@ -1,0 +1,55 @@
+.productWrapper {
+  @apply relative flex items-center gap-5 rounded-xl border border-gray py-4 px-8 font-inter;
+  &:not(:last-child) {
+    margin-bottom: 1.25rem;
+  }
+  @media (max-width: 768px) {
+    @apply flex-col gap-2 px-4;
+  }
+}
+
+.remove {
+  @apply absolute top-4 right-8 cursor-pointer rounded-md p-1.5 transition-colors hover:bg-primary-more-light;
+  @media (max-width: 768px) {
+    @apply right-4;
+  }
+}
+
+.imageWrapper {
+  @apply h-32 w-32;
+}
+
+.image {
+  @apply h-full w-full object-contain;
+}
+
+.info {
+  @apply flex w-full flex-col gap-3;
+}
+
+.title {
+  @apply text-xl font-bold;
+}
+
+.pizzaSelection {
+  @apply text-sm;
+}
+
+.price {
+  @apply text-lg font-semibold text-primary;
+}
+
+.quantityWrapper {
+  @apply flex w-[6.25rem] items-center justify-center gap-3 rounded-lg bg-primary-more-light p-2 font-inter font-semibold text-primary;
+}
+
+.quantity {
+  cursor: pointer;
+  &:nth-child(2) {
+    @apply cursor-default px-2;
+  }
+}
+
+.bottom {
+  @apply flex items-center justify-between;
+}

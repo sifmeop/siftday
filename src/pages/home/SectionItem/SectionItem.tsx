@@ -30,7 +30,7 @@ const SectionItem = ({ category, type }: Props) => {
       <div className={styles.products}>
         {products &&
           products.map((product) => (
-            <ProductCard key={product.id} product={product} />
+            <ProductCard key={product.id} product={product} type={type} />
           ))}
       </div>
     </section>

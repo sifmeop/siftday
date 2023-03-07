@@ -3,7 +3,6 @@ export const formatCurrency = (value: number) => {
     style: 'currency',
     currency: 'UAH',
     compactDisplay: 'long',
-    maximumSignificantDigits: 1,
     currencyDisplay: 'narrowSymbol'
   }).format(value)
 }

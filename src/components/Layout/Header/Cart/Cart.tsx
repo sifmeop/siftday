@@ -10,6 +10,7 @@ import {
 } from '@chakra-ui/react'
 
 import { useAppSelector } from 'hooks/useRedux'
+import { useEffect } from 'react'
 import { FaShoppingCart } from 'react-icons/fa'
 import { NavLink } from 'react-router-dom'
 import Button from 'ui/Button/Button'
@@ -23,13 +24,19 @@ const Cart = () => {
   const total = useAppSelector((state) => state.cart.total)
   const formattedAmount = formatCurrency(total)
 
+  useEffect(() => {
+    if (!cart.length) {
+      onClose()
+    }
+  }, [cart.length])
+
   return (
     <>
       <button className={styles.cart} onClick={onOpen}>
         <FaShoppingCart size='1.5rem' />
         <span>{formattedAmount}</span>
       </button>
-      <Drawer size='lg' isOpen={isOpen} placement='right' onClose={onClose}>
+      <Drawer size='md' isOpen={isOpen} placement='right' onClose={onClose}>
         <DrawerOverlay />
         <DrawerContent>
           <DrawerCloseButton />
@@ -38,8 +45,8 @@ const Cart = () => {
           </DrawerHeader>
           <DrawerBody>
             {cart.length > 0 ? (
-              cart.map((product) => (
-                <CartProduct key={product.product.id} product={product} />
+              cart.map((item) => (
+                <CartProduct key={item.product.id} item={item} />
               ))
             ) : (
               <h1>Замовлень немає</h1>

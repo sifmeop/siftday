@@ -1,8 +1,11 @@
-import { Image, Tooltip, useDisclosure } from '@chakra-ui/react'
+import { Image, Tooltip, useDisclosure, useToast } from '@chakra-ui/react'
+import { Product, ProductType } from 'types/product.interface'
 
+import { useActionCreators } from 'hooks/useActionCreators'
 import { memo } from 'react'
-import { Product } from 'types/product.interface'
+import { cartActions } from 'store/slices/cartSlice'
 import Button from 'ui/Button/Button'
+import Message from 'ui/Message/Message'
 import { DB_URL } from 'utils/constants'
 import { formatCurrency } from 'utils/formatCurrency'
 import styles from './ProductCard.module.scss'
@@ -10,10 +13,24 @@ import ProductModal from './ProductModal/ProductModal'
 
 interface Props {
   product: Product
+  type: ProductType
 }
 
-const ProductCard = ({ product }: Props) => {
+const ProductCard = ({ product, type }: Props) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
+  const toast = useToast()
+
+  const actions = useActionCreators(cartActions)
+
+  const addToCart = () => {
+    actions.addProduct({ product })
+    toast.closeAll()
+    toast({
+      position: 'top-right',
+      duration: 500,
+      render: () => <Message />
+    })
+  }
 
   return (
     <>
@@ -37,14 +54,20 @@ const ProductCard = ({ product }: Props) => {
             </Tooltip>
           )}
           <div className={styles.bottom}>
-            <Button label='Вибрати' onClick={onOpen} />
+            {type === 'pizza' ? (
+              <Button label='Вибрати' onClick={onOpen} />
+            ) : (
+              <Button label='Додати' onClick={addToCart} />
+            )}
             <span className={styles.price}>
               {formatCurrency(product.price)}
             </span>
           </div>
         </div>
       </div>
-      <ProductModal product={product} isOpen={isOpen} onClose={onClose} />
+      {type === 'pizza' && (
+        <ProductModal product={product} isOpen={isOpen} onClose={onClose} />
+      )}
     </>
   )
 }

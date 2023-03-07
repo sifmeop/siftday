@@ -1,23 +1,24 @@
+import { Dough, Size } from 'types/product.interface'
+
 import clsx from 'clsx'
-import { useState } from 'react'
 import styles from './Switch.module.scss'
 
 interface Props {
-  labels: string[]
+  selection: Dough | Size
+  labels: Dough[] | Size[]
+  setSelection: (label: Dough | Size) => void
 }
 
-const Switch = ({ labels }: Props) => {
-  const [currentLabel, setCurrentLabel] = useState<number>(0)
-
+const Switch = ({ selection, labels, setSelection }: Props) => {
   return (
     <div className={styles.switch}>
-      {labels.map((label, index) => (
+      {labels.map((label) => (
         <div
           key={label}
           className={clsx(styles.label, {
-            [styles.active]: currentLabel === index
+            [styles.active]: selection === label
           })}
-          onClick={() => setCurrentLabel(index)}>
+          onClick={() => setSelection(label)}>
           {label}
         </div>
       ))}

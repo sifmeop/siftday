@@ -6,15 +6,20 @@ import {
   ModalContent,
   ModalFooter,
   ModalHeader,
-  ModalOverlay
+  ModalOverlay,
+  useToast
 } from '@chakra-ui/react'
+import { memo, useState } from 'react'
+import { Dough, Product, Size } from 'types/product.interface'
 
-import { memo } from 'react'
-import { Product } from 'types/product.interface'
+import { useActionCreators } from 'hooks/useActionCreators'
+import { cartActions } from 'store/slices/cartSlice'
 import Button from 'ui/Button/Button'
+import Message from 'ui/Message/Message'
 import Switch from 'ui/Switch/Switch'
 import { DB_URL } from 'utils/constants'
 import { formatCurrency } from 'utils/formatCurrency'
+import { pizzaPrice } from 'utils/pizzaPrice'
 import styles from './ProductModal.module.scss'
 
 interface Props {
@@ -24,10 +29,31 @@ interface Props {
 }
 
 const ProductModal = ({ product, isOpen, onClose }: Props) => {
-  console.log(product)
+  const [dough, setDough] = useState<Dough>('Традиційне')
+  const [size, setSize] = useState<Size>('30 см')
+
+  const toast = useToast()
+
+  const actions = useActionCreators(cartActions)
 
   const addToCart = () => {
+    actions.addProduct({
+      product: { ...product, price: pizzaPrice(size, product.price) },
+      dough,
+      size
+    })
+    toast.closeAll()
+    toast({
+      position: 'top-right',
+      duration: 500,
+      render: () => <Message />
+    })
     onClose()
+  }
+
+  const handleOnCloseComplete = () => {
+    setDough('Традиційне')
+    setSize('30 см')
   }
 
   return (
@@ -35,7 +61,8 @@ const ProductModal = ({ product, isOpen, onClose }: Props) => {
       motionPreset='slideInRight'
       size='4xl'
       isOpen={isOpen}
-      onClose={onClose}>
+      onClose={onClose}
+      onCloseComplete={handleOnCloseComplete}>
       <ModalOverlay />
       <ModalContent className='relative'>
         <ModalHeader></ModalHeader>
@@ -51,13 +78,24 @@ const ProductModal = ({ product, isOpen, onClose }: Props) => {
           </div>
           <section className={styles.sectionInfo}>
             <h1 className={styles.title}>{product.title}</h1>
-            <Switch labels={['Традиційне', 'Тонке']} />
-            <Switch labels={['20 см', '28 см', '33 см']} />
+            <p className={styles.description}>{product.description}</p>
+            <Switch
+              selection={dough}
+              labels={['Традиційне', 'Тонке']}
+              // @ts-ignore
+              setSelection={setDough}
+            />
+            <Switch
+              selection={size}
+              labels={['20 см', '30 см', '40 см']}
+              // @ts-ignore
+              setSelection={setSize}
+            />
           </section>
         </ModalBody>
         <ModalFooter className={styles.modalFooter}>
           <div className={styles.total}>
-            Разом: {formatCurrency(product.price)}
+            Разом: {formatCurrency(pizzaPrice(size, product.price))}
           </div>
           <Button label='Додати' onClick={addToCart} padding='2.5rem' />
         </ModalFooter>
