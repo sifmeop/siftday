@@ -41,8 +41,8 @@ const ProductCard = ({ product, type }: Props) => {
             className={styles.image}
             src={`${DB_URL}/${product.image}`}
             alt={product.title}
+            loading='lazy'
           />
-          <img />
         </div>
         <div className={styles.info}>
           <h1 className={styles.title}>{product.title}</h1>

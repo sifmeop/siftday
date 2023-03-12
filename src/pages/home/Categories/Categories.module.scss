@@ -1,0 +1,27 @@
+.categories {
+  @apply mb-7 flex w-full flex-nowrap items-stretch gap-5 overflow-x-auto overflow-y-hidden whitespace-nowrap;
+  // &::-webkit-scrollbar {
+  // @apply hidden;
+  // }
+}
+
+.category {
+  @apply flex w-full min-w-[5rem] max-w-[8.4375rem] cursor-pointer flex-col items-center justify-center gap-2 rounded-lg border border-gray bg-white p-2 transition-colors;
+  &:hover {
+    @apply border-primary;
+  }
+}
+
+.icon {
+  @apply grid h-8 w-8 place-items-center;
+}
+
+.title {
+  @apply text-lg;
+}
+
+@media (max-width: 425px) {
+  .category {
+    @apply flex-row;
+  }
+}

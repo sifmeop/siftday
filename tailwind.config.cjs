@@ -16,7 +16,8 @@ module.exports = {
     },
     fontFamily: {
       'sf-pro': ['SF Pro', 'sans-serif'],
-      inter: ['Inter', 'sans-serif']
+      inter: ['Inter', 'sans-serif'],
+      ubuntu: ['Ubuntu', 'sans-serif']
     }
   },
   plugins: [require('@tailwindcss/line-clamp')]

@@ -1,0 +1,22 @@
+.selected {
+  @apply absolute top-2 right-2;
+}
+
+.ingredient {
+  @apply relative flex flex-col items-center gap-2;
+}
+
+.iconWrapper {
+  @apply grid h-[6.5625rem] w-[6.5625rem] place-items-center rounded-lg border border-gray p-8 transition-colors;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.price {
+  @apply font-bold text-primary;
+}
+
+.active {
+  @apply border-primary;
+}

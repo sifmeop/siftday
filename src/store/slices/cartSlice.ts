@@ -30,47 +30,29 @@ const slice = createSlice({
   initialState,
   reducers: {
     addProduct: (state, action: PayloadAction<AddProduct>) => {
-      const id: number = Date.now()
-
-      const { product, dough, size } = action.payload
+      const { product, size, dough } = action.payload
 
       const productFind = state.cart.find(
-        (item) => item.product.id === product.id
+        (item) =>
+          item.product.id === product.id &&
+          item.size === size &&
+          item.dough === dough
       )
 
-      if (!productFind) {
-        if (dough && size) {
-          state.cart.push({
-            id,
-            product,
-            dough,
-            size,
-            quantity: 1
-          })
-        } else {
-          state.cart.push({
-            id,
-            product,
-            quantity: 1
-          })
-        }
-        state.total += product.price
+      if (productFind) {
+        productFind.quantity += 1
+        state.total += productFind.product.price
         return
       }
 
-      if (productFind.dough !== dough || productFind.size !== size) {
-        state.cart.push({
-          id,
-          product,
-          dough,
-          size,
-          quantity: 1
-        })
-        state.total += product.price
-        return
-      }
+      state.cart.push({
+        id: Date.now(),
+        product,
+        quantity: 1,
+        size,
+        dough
+      })
 
-      productFind.quantity += 1
       state.total += product.price
     },
     removeProduct: (state, action: PayloadAction<{ id: number }>) => {

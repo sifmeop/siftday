@@ -37,6 +37,7 @@ const CartProduct = ({ item }: Props) => {
           className={styles.image}
           src={`${DB_URL}/${item.product.image}`}
           alt={item.product.title}
+          loading='lazy'
         />
       </div>
       <div className={styles.info}>

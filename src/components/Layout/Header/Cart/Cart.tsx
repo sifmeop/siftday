@@ -44,10 +44,8 @@ const Cart = () => {
             Ваше замовлення
           </DrawerHeader>
           <DrawerBody>
-            {cart.length > 0 ? (
-              cart.map((item) => (
-                <CartProduct key={item.product.id} item={item} />
-              ))
+            {cart.length ? (
+              cart.map((item) => <CartProduct key={item.id} item={item} />)
             ) : (
               <h1>Замовлень немає</h1>
             )}

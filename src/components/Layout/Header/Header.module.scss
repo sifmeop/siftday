@@ -6,11 +6,18 @@
   @apply flex items-center justify-between py-4;
 }
 
+.left {
+  @apply flex items-center gap-3;
+}
+
 .logo {
-  @apply flex items-center gap-2;
+  @apply flex cursor-pointer items-center gap-2 transition-colors hover:text-primary;
 }
 
 .title {
-  @apply text-2xl;
-  font-family: 'Ubuntu';
+  @apply font-ubuntu text-2xl;
+}
+
+.categories {
+  @apply flex items-center gap-3;
 }

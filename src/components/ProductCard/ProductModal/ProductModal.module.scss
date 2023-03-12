@@ -31,5 +31,21 @@
 }
 
 .modalFooter {
-  @apply flex items-center gap-3;
+  @apply ml-auto w-1/2 gap-3;
+  justify-content: space-between !important;
+  @media (max-width: 425px) {
+    @apply w-full;
+  }
+}
+
+@media (max-width: 425px) {
+  .modalBody {
+    @apply flex-col gap-5;
+  }
+  .sectionInfo {
+    @apply w-full;
+  }
+  .imageWrapper {
+    @apply h-auto;
+  }
 }

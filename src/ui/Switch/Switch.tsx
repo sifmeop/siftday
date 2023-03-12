@@ -1,12 +1,10 @@
-import { Dough, Size } from 'types/product.interface'
-
 import clsx from 'clsx'
 import styles from './Switch.module.scss'
 
 interface Props {
-  selection: Dough | Size
-  labels: Dough[] | Size[]
-  setSelection: (label: Dough | Size) => void
+  selection: string
+  labels: string[]
+  setSelection: (label: string) => void
 }
 
 const Switch = ({ selection, labels, setSelection }: Props) => {

@@ -1,7 +1,7 @@
 .card {
   @apply relative w-[18.75rem] rounded-xl border border-gray bg-white shadow-md transition-transform duration-300;
   &:hover {
-    @apply scale-[1.03] cursor-pointer shadow-lg;
+    @apply scale-[1.03] shadow-lg;
   }
 }
 
