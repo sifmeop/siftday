@@ -17,9 +17,9 @@ const Layout = () => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       actions.setUser({
-        id: user.uid,
-        email: user.email,
-        name: user.displayName
+        id: user?.uid,
+        email: user?.email,
+        name: user?.displayName
       })
     })
     return () => {

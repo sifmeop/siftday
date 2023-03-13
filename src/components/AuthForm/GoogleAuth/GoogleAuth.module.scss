@@ -1,0 +1,7 @@
+.button {
+  @apply w-full cursor-pointer rounded-md bg-primary-light p-3 text-center text-white transition-colors hover:bg-primary active:bg-primary-dark;
+}
+
+.icon {
+  @apply mx-auto;
+}

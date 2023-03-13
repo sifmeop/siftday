@@ -1,0 +1,14 @@
+.guest {
+  @apply mx-auto max-w-xs text-center;
+}
+
+.title {
+  @apply mb-5 text-xl font-semibold;
+}
+
+.link {
+  @apply block rounded-md bg-white p-4 shadow-lg transition-colors hover:bg-primary hover:text-white;
+  &:not(:last-child) {
+    @apply mb-3;
+  }
+}

@@ -1,9 +1,9 @@
 .wrapper {
-  @apply mx-auto max-w-xl rounded-lg p-8;
+  @apply mx-auto flex max-w-xl flex-col gap-5 rounded-lg p-8;
 }
 
 .link {
-  @apply font-medium transition-colors;
+  @apply font-medium underline transition-colors;
   &:hover {
     @apply text-primary-light;
   }

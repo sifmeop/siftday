@@ -2,7 +2,8 @@ import {
   FormLabel,
   Input,
   InputGroup,
-  InputRightElement
+  InputRightElement,
+  useToast
 } from '@chakra-ui/react'
 import {
   createUserWithEmailAndPassword,
@@ -15,7 +16,7 @@ import { useActionCreators } from 'hooks/useActionCreators'
 import { useAuth } from 'hooks/useAuth'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { redirect } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { userActions } from 'store/slices/userSlice'
 import Button from 'ui/Button/Button'
 
@@ -26,6 +27,7 @@ interface Props {
 interface FormValues {
   name: string
   email: string
+  // phone: string
   password: string
 }
 
@@ -34,6 +36,8 @@ const Form = ({ type }: Props) => {
   const { register, handleSubmit } = useForm()
   const auth = useAuth().auth
   const actions = useActionCreators(userActions)
+  const toast = useToast()
+  const navigate = useNavigate()
 
   const onSubmit = async (data: FormValues): Promise<void> => {
     switch (type) {
@@ -50,11 +54,21 @@ const Form = ({ type }: Props) => {
               name: user.displayName
             })
           })
-          // message.success(tAuthForm('successful-register'))
-          redirect('/account')
+          toast({
+            title: 'В аккаунт увійдено',
+            position: 'top',
+            status: 'success',
+            isClosable: true
+          })
+          navigate('/account')
         } catch (e) {
           console.log(e)
-          // message.error(tAuthForm('failed-login'))
+          toast({
+            title: 'Помилка входу',
+            position: 'top',
+            status: 'error',
+            isClosable: true
+          })
         }
         break
       case 'Register':
@@ -67,25 +81,35 @@ const Form = ({ type }: Props) => {
             updateProfile(user, {
               displayName: data.name
             })
-            console.log(user)
             actions.setUser({
               id: user.uid,
               email: user.email,
               name: user.displayName
             })
           })
-          // message.success(tAuthForm('successful-register'))
-          redirect('/account')
+          toast({
+            title: 'Обліковий запис створено',
+            position: 'top',
+            status: 'success',
+            isClosable: true
+          })
+          navigate('/account')
         } catch (e) {
           console.log(e)
-          // message.error(tAuthForm('failed-register'))
+          toast({
+            title: 'Помилка реєстрації',
+            position: 'top',
+            status: 'error',
+            isClosable: true
+          })
         }
         break
     }
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    // @ts-ignore
+    <form className='flex flex-col gap-2' onSubmit={handleSubmit(onSubmit)}>
       {type === 'Register' && (
         <>
           <FormLabel className='cartLabel' htmlFor='name'>
@@ -112,6 +136,21 @@ const Form = ({ type }: Props) => {
         placeholder='mail@gmail.com'
         {...register('email', { required: true })}
       />
+      {/* {type === 'Register' && (
+        <>
+          <FormLabel className='cartLabel' htmlFor='phone'>
+            Номер телефону*
+          </FormLabel>
+          <Input
+            id='phone'
+            size='lg'
+            focusBorderColor='#FF7010'
+            backgroundColor='white'
+            placeholder='+380'
+            {...register('phone', { required: true })}
+          />
+        </>
+      )} */}
       <FormLabel className='cartLabel' htmlFor='email'>
         Пароль*
       </FormLabel>

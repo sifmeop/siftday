@@ -1,8 +1,6 @@
 import { ReactComponent as Logo } from 'assets/image/favicon.svg'
 import clsx from 'clsx'
 import { Link } from 'react-router-dom'
-import { Link as LinkScroll } from 'react-scroll'
-import { products } from 'utils/products'
 import Account from './Account/Account'
 import Cart from './Cart/Cart'
 import styles from './Header.module.scss'
@@ -16,7 +14,7 @@ const Header = () => {
             <Logo />
             <h1 className={styles.title}>siftday</h1>
           </Link>
-          <div className={styles.categories}>
+          {/* <div className={styles.categories}>
             {products.map((product) => (
               <LinkScroll
                 to={product.type}
@@ -29,7 +27,7 @@ const Header = () => {
                 {product.category}
               </LinkScroll>
             ))}
-          </div>
+          </div> */}
         </div>
         <div className={styles.headerItems}>
           <Cart />

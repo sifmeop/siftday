@@ -3,7 +3,7 @@
 }
 
 .label {
-  @apply w-full cursor-pointer py-2.5 px-5;
+  @apply w-full cursor-pointer whitespace-nowrap py-2.5 px-5;
 }
 
 .active {
