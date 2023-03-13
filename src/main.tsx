@@ -1,4 +1,5 @@
 import 'assets/global.scss'
+import '../firebase.ts'
 
 import { ChakraProvider, extendTheme } from '@chakra-ui/react'
 

@@ -1,0 +1,13 @@
+.wrapper {
+  @apply mx-auto max-w-xl rounded-lg p-8;
+}
+
+.link {
+  @apply font-medium transition-colors;
+  &:hover {
+    @apply text-primary-light;
+  }
+  &:active {
+    @apply text-primary-dark;
+  }
+}

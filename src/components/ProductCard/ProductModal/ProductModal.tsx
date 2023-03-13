@@ -9,7 +9,7 @@ import {
   ModalOverlay,
   useToast
 } from '@chakra-ui/react'
-import { memo, useEffect, useState } from 'react'
+import { memo, useState } from 'react'
 import { Dough, Product, Size } from 'types/product.interface'
 
 import { useActionCreators } from 'hooks/useActionCreators'
@@ -38,9 +38,9 @@ const ProductModal = ({ product, isOpen, onClose }: Props) => {
   const actionsCart = useActionCreators(cartActions)
   const actionsIngredient = useActionCreators(ingredientActions)
 
-  useEffect(() => {
-    console.log(ingredients)
-  }, [ingredients])
+  // useEffect(() => {
+  // console.log(ingredients)
+  // }, [ingredients])
 
   const toast = useToast()
 
