@@ -12,3 +12,4 @@ export type ProductType = 'pizza' | 'sauce' | 'drink'
 
 export type Dough = 'Традиційне' | 'Тонке'
 export type Size = '20 см' | '30 см' | '40 см'
+export type TypeDelivery = 'Самовивіз' | 'Доставка'

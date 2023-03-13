@@ -1,31 +1,3 @@
 .cartContainer {
   @apply mx-auto max-w-4xl font-inter;
 }
-
-.sectionAboutYou {
-  @apply flex gap-5;
-}
-
-.title {
-  @apply mb-4 text-2xl font-semibold;
-}
-
-.label {
-  @apply mb-2 text-sm text-[#A5A5A5];
-}
-
-.deliveryType {
-  @apply flex justify-between gap-2;
-}
-
-.address {
-  @apply mt-4 flex gap-2;
-}
-
-.totalSection {
-  @apply flex items-center justify-between gap-3;
-}
-
-.totalPrice {
-  @apply text-xl font-semibold text-primary;
-}
