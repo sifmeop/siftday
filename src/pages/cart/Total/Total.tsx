@@ -13,11 +13,12 @@ interface Props {
 
 const Total = ({ register }: Props) => {
   const total = useAppSelector((state) => state.cart.total)
-  const formattedAmount = formatCurrency(total)
 
-  return (
+  const totalPrice = () => (total >= 400 ? total : total + 50)
+
+  return total > 0 ? (
     <section className={styles.section}>
-      <div>
+      <div className={styles.left}>
         <div className={styles.promocode}>
           <Input
             size='lg'
@@ -27,14 +28,19 @@ const Total = ({ register }: Props) => {
             {...register('promo_code')}
           />
           <div className={styles.button}>
-            <IoSend size='1.125rem' className={styles.icon} />
+            <IoSend size='1.125rem' />
           </div>
         </div>
-        <h2 className={styles.total}>Разом: {formattedAmount}</h2>
+        <h2 className={styles.total}>Разом: {formatCurrency(totalPrice())}</h2>
+        <span className={styles.description}>
+          *Доставка {formatCurrency(50)}
+          <br />
+          *Безкоштовна доставка при замовленні від 400 грн
+        </span>
       </div>
-      <Button label='Оформити замовлення' />
+      {total > 0 && <Button label='Оформити замовлення' />}
     </section>
-  )
+  ) : null
 }
 
 export default Total

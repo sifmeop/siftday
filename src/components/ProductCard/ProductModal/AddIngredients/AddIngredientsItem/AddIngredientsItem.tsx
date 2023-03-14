@@ -1,7 +1,8 @@
+import { memo, useState } from 'react'
+
 import { ReactComponent as Selected } from 'assets/icons/selected.svg'
 import clsx from 'clsx'
 import { useActionCreators } from 'hooks/useActionCreators'
-import { useState } from 'react'
 import { ingredientActions } from 'store/slices/ingredientSlice'
 import { Ingredient } from 'types/Ingredient.interface'
 import { formatCurrency } from 'utils/formatCurrency'
@@ -18,7 +19,7 @@ const AddIngredientsItem = ({ ingredient }: Props) => {
   const handleSelect = () => {
     setSelected((prev) => !prev)
     if (!selected) {
-      actions.addIngredient({ ingredient })
+      actions.addIngredient({ ingredient: ingredient })
     } else {
       actions.removeIngredient({ id: ingredient.id })
     }
@@ -37,7 +38,7 @@ const AddIngredientsItem = ({ ingredient }: Props) => {
             ['hidden']: !selected
           })}
         />
-        <ingredient.image />
+        <img src={ingredient.image} alt={ingredient.title} />
       </div>
       <h2>{ingredient.title}</h2>
       <p className={styles.price}>{formatCurrency(ingredient.price)}</p>
@@ -45,4 +46,4 @@ const AddIngredientsItem = ({ ingredient }: Props) => {
   )
 }
 
-export default AddIngredientsItem
+export default memo(AddIngredientsItem)

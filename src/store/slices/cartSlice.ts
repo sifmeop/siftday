@@ -1,10 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { Dough, Product, Size } from 'types/product.interface'
 
+import { Ingredient } from 'types/Ingredient.interface'
+
 interface AddProduct {
   product: Product
   size?: Size
   dough?: Dough
+  ingredients?: Ingredient[]
 }
 
 export interface ProductCart {
@@ -13,6 +16,7 @@ export interface ProductCart {
   quantity: number
   size?: Size
   dough?: Dough
+  ingredients?: Ingredient[]
 }
 
 interface CartState {
@@ -30,13 +34,14 @@ const slice = createSlice({
   initialState,
   reducers: {
     addProduct: (state, action: PayloadAction<AddProduct>) => {
-      const { product, size, dough } = action.payload
+      const { product, size, dough, ingredients } = action.payload
 
       const productFind = state.cart.find(
         (item) =>
           item.product.id === product.id &&
           item.size === size &&
-          item.dough === dough
+          item.dough === dough &&
+          JSON.stringify(item.ingredients) === JSON.stringify(ingredients)
       )
 
       if (productFind) {
@@ -50,7 +55,8 @@ const slice = createSlice({
         product,
         quantity: 1,
         size,
-        dough
+        dough,
+        ingredients
       })
 
       state.total += product.price

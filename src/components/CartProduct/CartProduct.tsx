@@ -47,6 +47,15 @@ const CartProduct = ({ item }: Props) => {
             {item.dough}, {item.size}
           </p>
         )}
+        {item.ingredients && (
+          <ul>
+            {item.ingredients.map((ingredient) => (
+              <li key={ingredient.id} className={styles.itemIngredient}>
+                {ingredient.title}
+              </li>
+            ))}
+          </ul>
+        )}
         <div className={styles.bottom}>
           <div className={styles.quantityWrapper}>
             <span className={styles.quantity} onClick={removeQuantity}>

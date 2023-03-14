@@ -1,7 +1,7 @@
 {
   "name": "client",
   "private": true,
-  "version": "0.5.5",
+  "version": "0.6.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -24,6 +24,7 @@
     "react-router-dom": "^6.8.2",
     "react-scroll": "^1.8.9",
     "sass": "^1.58.3",
+    "uuidv4": "^6.2.13",
     "vite-plugin-svgr": "^2.4.0"
   },
   "devDependencies": {

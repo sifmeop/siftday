@@ -6,8 +6,12 @@
   @apply text-xl font-semibold text-primary;
 }
 
+.left {
+  @apply flex flex-col gap-3;
+}
+
 .promocode {
-  @apply relative mb-3 flex;
+  @apply relative flex;
 }
 
 .input {
@@ -16,4 +20,8 @@
 
 .button {
   @apply absolute right-0 z-10 flex h-12 w-12 cursor-pointer items-center justify-center rounded-md bg-primary text-white transition-colors hover:bg-primary-light active:bg-primary-dark;
+}
+
+.description {
+  @apply text-sm text-primary-light;
 }

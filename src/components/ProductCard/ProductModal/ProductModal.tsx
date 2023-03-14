@@ -9,7 +9,7 @@ import {
   ModalOverlay,
   useToast
 } from '@chakra-ui/react'
-import { memo, useState } from 'react'
+import { memo, useMemo, useState } from 'react'
 import { Dough, Product, Size } from 'types/product.interface'
 
 import { useActionCreators } from 'hooks/useActionCreators'
@@ -38,17 +38,22 @@ const ProductModal = ({ product, isOpen, onClose }: Props) => {
   const actionsCart = useActionCreators(cartActions)
   const actionsIngredient = useActionCreators(ingredientActions)
 
-  // useEffect(() => {
-  // console.log(ingredients)
-  // }, [ingredients])
+  const ingredientsPrice = useMemo(
+    () => ingredients.reduce((acc, ingredient) => acc + ingredient.price, 0),
+    [ingredients]
+  )
 
   const toast = useToast()
 
   const addToCart = () => {
     actionsCart.addProduct({
-      product: { ...product, price: pizzaPrice(size, product.price) },
+      product: {
+        ...product,
+        price: pizzaPrice(size, product.price) + ingredientsPrice
+      },
       dough,
-      size
+      size,
+      ingredients
     })
 
     toast.closeAll()
@@ -114,7 +119,8 @@ const ProductModal = ({ product, isOpen, onClose }: Props) => {
         </ModalBody>
         <ModalFooter className={styles.modalFooter}>
           <div className={styles.total}>
-            Разом: {formatCurrency(pizzaPrice(size, product.price))}
+            Разом:{' '}
+            {formatCurrency(pizzaPrice(size, product.price + ingredientsPrice))}
           </div>
           <Button label='Додати' onClick={addToCart} padding='2.5rem' />
         </ModalFooter>
