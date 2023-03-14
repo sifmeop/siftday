@@ -1,5 +1,4 @@
 import { Input } from '@chakra-ui/react'
-import { useAppSelector } from 'hooks/useRedux'
 import { UseFormRegister } from 'react-hook-form'
 import { IoSend } from 'react-icons/io5'
 import { FormValues } from 'types/form-values.interface'
@@ -9,13 +8,11 @@ import styles from './Total.module.scss'
 
 interface Props {
   register: UseFormRegister<FormValues>
+  total: number
+  totalPrice: () => number
 }
 
-const Total = ({ register }: Props) => {
-  const total = useAppSelector((state) => state.cart.total)
-
-  const totalPrice = () => (total >= 400 ? total : total + 50)
-
+const Total = ({ register, total, totalPrice }: Props) => {
   return total > 0 ? (
     <section className={styles.section}>
       <div className={styles.left}>

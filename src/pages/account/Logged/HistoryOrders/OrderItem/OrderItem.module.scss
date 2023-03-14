@@ -1,0 +1,6 @@
+.order {
+  @apply rounded-xl bg-white p-4 shadow-md;
+  &:not(:last-child) {
+    margin-bottom: 1.25rem;
+  }
+}

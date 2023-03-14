@@ -99,6 +99,10 @@ const slice = createSlice({
         state.total -= productFind.product.price
         return
       }
+    },
+    clearCart: (state) => {
+      state.cart = []
+      state.total = 0
     }
   }
 })

@@ -1,6 +1,7 @@
 import { FormLabel, Input } from '@chakra-ui/react'
 import { FieldErrors, UseFormRegister } from 'react-hook-form'
 
+import { useAuth } from 'hooks/useAuth'
 import { FormValues } from 'types/form-values.interface'
 import styles from './AboutYou.module.scss'
 
@@ -10,6 +11,8 @@ interface Props {
 }
 
 const AboutYou = ({ register, errors }: Props) => {
+  const auth = useAuth().auth
+
   return (
     <section>
       <h1 className='cartTitle'>Про вас</h1>
@@ -26,6 +29,8 @@ const AboutYou = ({ register, errors }: Props) => {
             size='lg'
             focusBorderColor='#FF7010'
             backgroundColor='white'
+            // @ts-ignore
+            defaultValue={auth.currentUser?.displayName}
             placeholder='Євген'
             {...register('name', { required: true })}
           />
@@ -67,6 +72,8 @@ const AboutYou = ({ register, errors }: Props) => {
             type='email'
             focusBorderColor='#FF7010'
             backgroundColor='white'
+            // @ts-ignore
+            defaultValue={auth.currentUser?.email}
             placeholder='mail@gmail.com'
             {...register('email', {
               required: 'Required',

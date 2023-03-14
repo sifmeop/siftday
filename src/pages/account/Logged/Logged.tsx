@@ -10,7 +10,7 @@ const Logged = () => {
   const [selection, setSelection] = useState<Switch>('Історія замовлень')
 
   return (
-    <>
+    <div className={styles.container}>
       <div className={styles.top}>
         <h1 className={styles.title}>Мій аккаунт</h1>
         <Switch
@@ -21,7 +21,7 @@ const Logged = () => {
         />
       </div>
       {selection === 'Історія замовлень' ? <HistoryOrders /> : <AccountInfo />}
-    </>
+    </div>
   )
 }
 

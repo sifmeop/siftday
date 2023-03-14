@@ -1,3 +1,7 @@
 .cartContainer {
   @apply mx-auto max-w-4xl font-inter;
 }
+
+.title {
+  @apply mb-6 font-inter text-4xl font-semibold;
+}
