@@ -1,5 +1,5 @@
 .productWrapper {
-  @apply relative flex items-center gap-5 rounded-xl border border-gray py-4 px-8 font-inter;
+  @apply relative flex items-center gap-5 rounded-xl border border-gray bg-white py-4 px-8 font-inter;
   &:not(:last-child) {
     margin-bottom: 1.25rem;
   }

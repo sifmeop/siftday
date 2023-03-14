@@ -1,27 +1,33 @@
 import { Radio, RadioGroup, Stack } from '@chakra-ui/react'
-import { Control, Controller, UseFormRegister } from 'react-hook-form'
+import { Control, Controller, FieldErrors } from 'react-hook-form'
 
 import { FormValues } from 'types/form-values.interface'
 
 interface Props {
-  register: UseFormRegister<FormValues>
   control: Control<FormValues, any>
+  errors: FieldErrors<FormValues>
 }
 
-const Payment = ({ register, control }: Props) => {
+const Payment = ({ control, errors }: Props) => {
   return (
     <section>
       <h1 className='cartTitle'>Оплата</h1>
+      {errors.payment && (
+        <span className='text-red'>Оберіть спосіб оплати</span>
+      )}
       <Controller
-        name='delivery'
+        name='payment'
         control={control}
+        rules={{ required: true }}
+        // @ts-ignore
+        defaultValue='Готівка'
         render={({ field: { onChange, value } }) => (
-          <RadioGroup onChange={onChange} value={value}>
+          <RadioGroup onChange={onChange} value={value} defaultValue='Готівка'>
             <Stack spacing={6} direction='row'>
-              <Radio colorScheme='orange' value='cash'>
+              <Radio colorScheme='orange' value='Готівка'>
                 Готівкою
               </Radio>
-              <Radio colorScheme='orange' value='card'>
+              <Radio colorScheme='orange' value='Картка'>
                 Картою
               </Radio>
             </Stack>

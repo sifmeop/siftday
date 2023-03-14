@@ -1,7 +1,19 @@
-.totalSection {
+.section {
   @apply flex items-center justify-between gap-3;
 }
 
-.totalPrice {
+.total {
   @apply text-xl font-semibold text-primary;
+}
+
+.promocode {
+  @apply relative mb-3 flex;
+}
+
+.input {
+  padding-right: 4rem !important;
+}
+
+.button {
+  @apply absolute right-0 z-10 flex h-12 w-12 cursor-pointer items-center justify-center rounded-md bg-primary text-white transition-colors hover:bg-primary-light active:bg-primary-dark;
 }

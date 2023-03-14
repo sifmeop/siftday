@@ -9,6 +9,7 @@ import {
   useDisclosure
 } from '@chakra-ui/react'
 
+import CartProduct from 'components/CartProduct/CartProduct'
 import { useAppSelector } from 'hooks/useRedux'
 import { useEffect } from 'react'
 import { FaShoppingCart } from 'react-icons/fa'
@@ -16,7 +17,6 @@ import { NavLink } from 'react-router-dom'
 import Button from 'ui/Button/Button'
 import { formatCurrency } from 'utils/formatCurrency'
 import styles from './Cart.module.scss'
-import CartProduct from './CartProduct/CartProduct'
 
 const Cart = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()

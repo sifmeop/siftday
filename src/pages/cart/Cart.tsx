@@ -1,8 +1,8 @@
 import { Divider } from '@chakra-ui/react'
-import { useState } from 'react'
+import CartProduct from 'components/CartProduct/CartProduct'
+import { useAppSelector } from 'hooks/useRedux'
 import { useForm } from 'react-hook-form'
 import { FormValues } from 'types/form-values.interface'
-import { TypeDelivery } from 'types/product.interface'
 import AboutYou from './AboutYou/AboutYou'
 import styles from './Cart.module.scss'
 import Commentary from './Commentary/Commentary'
@@ -11,33 +11,34 @@ import Payment from './Payment/Payment'
 import Total from './Total/Total'
 
 const Cart = () => {
-  const [selection, setSelection] = useState<TypeDelivery>('Доставка')
+  const {
+    register,
+    handleSubmit,
+    control,
+    formState: { errors }
+  } = useForm<FormValues>()
 
-  const { register, handleSubmit, control } = useForm<FormValues>()
+  const cart = useAppSelector((state) => state.cart.cart)
 
   const onSubmit = (data: FormValues) => console.log(data)
 
   return (
     <div className={styles.cartContainer}>
-      {/*  */}
-
-      {/*  */}
+      {cart.length ? (
+        cart.map((item) => <CartProduct key={item.id} item={item} />)
+      ) : (
+        <h1>Замовлень немає</h1>
+      )}
       <form onSubmit={handleSubmit(onSubmit)}>
-        <AboutYou register={register} />
+        <AboutYou register={register} errors={errors} />
         <Divider marginTop='5' marginBottom='5' />
-        <DeliveryType
-          register={register}
-          control={control}
-          selection={selection}
-          // @ts-ignore
-          setSelection={setSelection}
-        />
+        <DeliveryType register={register} control={control} errors={errors} />
         <Divider marginTop='5' marginBottom='5' />
-        <Payment register={register} control={control} />
+        <Payment control={control} errors={errors} />
         <Divider marginTop='5' marginBottom='5' />
         <Commentary register={register} />
         <Divider marginTop='5' marginBottom='5' />
-        <Total />
+        <Total register={register} />
       </form>
     </div>
   )

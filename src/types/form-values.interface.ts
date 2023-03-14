@@ -8,8 +8,9 @@ export interface FormValues {
   street: string
   house: string
   entrance: number
-  floor: number
+  level: number
   apartment: number
-  payment: 'cash' | 'card'
+  payment: 'Готівка' | 'Картка'
   comment: string
+  promo_code: string
 }

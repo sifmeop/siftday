@@ -5,25 +5,38 @@ import {
   NumberInputField,
   NumberInputStepper
 } from '@chakra-ui/react'
-import { Control, Controller, UseFormRegister } from 'react-hook-form'
+import { useEffect, useState } from 'react'
+import {
+  Control,
+  Controller,
+  FieldErrors,
+  useController,
+  UseFormRegister
+} from 'react-hook-form'
 
 import { FormValues } from 'types/form-values.interface'
+import { TypeDelivery } from 'types/product.interface'
 import Switch from 'ui/Switch/Switch'
 import styles from './DeliveryType.module.scss'
 
 interface Props {
   register: UseFormRegister<FormValues>
   control: Control<FormValues, any>
-  selection: string
-  setSelection: (value: string) => void
+  errors: FieldErrors<FormValues>
 }
 
-const DeliveryType = ({
-  register,
-  control,
-  selection,
-  setSelection
-}: Props) => {
+const DeliveryType = ({ register, control, errors }: Props) => {
+  const [selection, setSelection] = useState<TypeDelivery>('Доставка')
+
+  const { field } = useController({
+    name: 'delivery',
+    control
+  })
+
+  useEffect(() => {
+    field.onChange(selection)
+  }, [selection])
+
   return (
     <section>
       <div className={styles.deliveryType}>
@@ -38,13 +51,16 @@ const DeliveryType = ({
       <FormLabel className='cartLabel' htmlFor='street'>
         Вулиця*
       </FormLabel>
+      {errors.street && (
+        <span className='text-red'>Введіть, будь ласка, назву вулиці</span>
+      )}
       <Input
         id='street'
         size='lg'
         focusBorderColor='#FF7010'
         backgroundColor='white'
         placeholder='Пушкіна'
-        {...register('street', { required: true })}
+        {...register('street', { required: true, minLength: 3 })}
       />
       <div className={styles.address}>
         <div>
@@ -84,7 +100,7 @@ const DeliveryType = ({
             Поверх
           </FormLabel>
           <Controller
-            name='floor'
+            name='level'
             control={control}
             render={({ field: { onChange, value } }) => (
               <NumberInput
