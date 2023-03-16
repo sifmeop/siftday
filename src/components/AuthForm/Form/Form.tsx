@@ -33,7 +33,11 @@ interface FormValues {
 
 const Form = ({ type }: Props) => {
   const [show, setShow] = useState<boolean>(false)
-  const { register, handleSubmit } = useForm()
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm()
   const auth = useAuth().auth
   const actions = useActionCreators(userActions)
   const toast = useToast()
@@ -48,6 +52,7 @@ const Form = ({ type }: Props) => {
             data.email,
             data.password
           ).then(async ({ user }) => {
+            user.phoneNumber
             actions.setUser({
               id: user.uid,
               email: user.email,
@@ -115,6 +120,9 @@ const Form = ({ type }: Props) => {
           <FormLabel className='cartLabel' htmlFor='name'>
             Ім'я*
           </FormLabel>
+          {errors.name && (
+            <span className='text-red'>Введіть, будь ласка, ваше ім'я</span>
+          )}
           <Input
             id='name'
             size='lg'
@@ -128,39 +136,34 @@ const Form = ({ type }: Props) => {
       <FormLabel className='cartLabel' htmlFor='email'>
         Почта*
       </FormLabel>
+      {errors.email && <span className='text-red'>Невірна адреса пошти</span>}
       <Input
         id='email'
         size='lg'
         focusBorderColor='#FF7010'
         backgroundColor='white'
         placeholder='mail@gmail.com'
-        {...register('email', { required: true })}
+        {...register('email', {
+          required: 'Required',
+          pattern: {
+            value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+            message: 'Невірна адреса пошти'
+          }
+        })}
       />
-      {/* {type === 'Register' && (
-        <>
-          <FormLabel className='cartLabel' htmlFor='phone'>
-            Номер телефону*
-          </FormLabel>
-          <Input
-            id='phone'
-            size='lg'
-            focusBorderColor='#FF7010'
-            backgroundColor='white'
-            placeholder='+380'
-            {...register('phone', { required: true })}
-          />
-        </>
-      )} */}
       <FormLabel className='cartLabel' htmlFor='email'>
         Пароль*
       </FormLabel>
+      {errors.password && (
+        <span className='text-red'>Мінімальна довжина 8 символів</span>
+      )}
       <InputGroup size='lg' backgroundColor='white'>
         <Input
           pr='4.5rem'
           type={show ? 'text' : 'password'}
           focusBorderColor='#FF7010'
           placeholder='12345678'
-          {...register('password', { required: true })}
+          {...register('password', { required: true, minLength: 8 })}
         />
         <InputRightElement width='4.5rem'>
           <div

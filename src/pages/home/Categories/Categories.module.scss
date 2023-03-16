@@ -1,8 +1,5 @@
 .categories {
   @apply mb-7 flex w-full flex-nowrap items-stretch gap-5 overflow-x-auto overflow-y-hidden whitespace-nowrap;
-  // &::-webkit-scrollbar {
-  // @apply hidden;
-  // }
 }
 
 .category {

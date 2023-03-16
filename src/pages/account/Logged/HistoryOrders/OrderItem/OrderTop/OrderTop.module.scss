@@ -1,0 +1,23 @@
+.orderNumber {
+  @apply relative pl-4;
+  &::before {
+    content: '';
+    @apply absolute left-0 h-full w-1 rounded-3xl bg-green;
+  }
+}
+
+.top {
+  @apply flex items-center justify-between;
+}
+
+.title {
+  @apply mb-2 font-inter text-sm text-gray-dark;
+}
+
+.icon {
+  @apply transition-transform duration-300;
+}
+
+.active {
+  @apply -rotate-180;
+}

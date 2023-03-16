@@ -1,19 +1,21 @@
+import { Divider, useDisclosure } from '@chakra-ui/react'
 import { ref, set } from '@firebase/database'
 import { useAppDispatch, useAppSelector } from 'hooks/useRedux'
 
-import { Divider } from '@chakra-ui/react'
-import CartProduct from 'components/CartProduct/CartProduct'
-import { useAuth } from 'hooks/useAuth'
-import { useForm } from 'react-hook-form'
-import { cartActions } from 'store/slices/cartSlice'
-import { FormValues } from 'types/form-values.interface'
-import { db } from '../../../firebase'
 import AboutYou from './AboutYou/AboutYou'
-import styles from './Cart.module.scss'
+import CartProduct from 'components/CartProduct/CartProduct'
 import Commentary from './Commentary/Commentary'
 import DeliveryType from './DeliveryType/DeliveryType'
+import { FormValues } from 'types/form-values.interface'
 import Payment from './Payment/Payment'
+import SuccessfulOrder from 'ui/SuccessfulOrder/SuccessfulOrder'
 import Total from './Total/Total'
+import { cartActions } from 'store/slices/cartSlice'
+import { db } from '../../../firebase'
+import styles from './Cart.module.scss'
+import { useAuth } from 'hooks/useAuth'
+import { useForm } from 'react-hook-form'
+import { useRef } from 'react'
 
 const Cart = () => {
   const auth = useAuth().auth
@@ -30,6 +32,9 @@ const Cart = () => {
   const cart = useAppSelector((state) => state.cart.cart)
   const total = useAppSelector((state) => state.cart.total)
   const totalPrice = () => (total >= 400 ? total : total + 50)
+
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const cancelRef = useRef(null)
 
   const onSubmit = async (data: FormValues) => {
     console.log(data)
@@ -51,7 +56,11 @@ const Cart = () => {
             product: {
               ...item.product,
               dough: item.dough ?? null,
-              size: item.size ?? null
+              size: item.size ?? null,
+              ingredients:
+                item.ingredients
+                  ?.map((ingredient) => ingredient.title)
+                  .join(', ') ?? null
             },
             quantity: item.quantity
           }))
@@ -62,6 +71,7 @@ const Cart = () => {
         console.log('success')
         reset()
         dispatch(cartActions.clearCart())
+        onOpen()
       })
     } catch (e) {
       console.log(e)
@@ -69,29 +79,36 @@ const Cart = () => {
   }
 
   return (
-    <div className={styles.cartContainer}>
-      {cart.length ? (
-        <>
-          <h1 className={styles.title}>Ваше замовлення</h1>
-          {cart.map((item) => (
-            <CartProduct key={item.id} item={item} />
-          ))}
-        </>
-      ) : (
-        <h1 className={styles.title}>Замовлень немає</h1>
-      )}
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <AboutYou register={register} errors={errors} />
-        <Divider marginTop='5' marginBottom='5' />
-        <DeliveryType register={register} control={control} errors={errors} />
-        <Divider marginTop='5' marginBottom='5' />
-        <Payment control={control} errors={errors} />
-        <Divider marginTop='5' marginBottom='5' />
-        <Commentary register={register} />
-        <Divider marginTop='5' marginBottom='5' />
-        <Total register={register} total={total} totalPrice={totalPrice} />
-      </form>
-    </div>
+    <>
+      <div className={styles.cartContainer}>
+        {cart.length ? (
+          <>
+            <h1 className={styles.title}>Ваше замовлення</h1>
+            {cart.map((item) => (
+              <CartProduct key={item.id} item={item} />
+            ))}
+          </>
+        ) : (
+          <h1 className={styles.title}>Замовлень немає</h1>
+        )}
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <AboutYou register={register} errors={errors} />
+          <Divider marginTop='5' marginBottom='5' />
+          <DeliveryType register={register} control={control} errors={errors} />
+          <Divider marginTop='5' marginBottom='5' />
+          <Payment control={control} errors={errors} />
+          <Divider marginTop='5' marginBottom='5' />
+          <Commentary register={register} />
+          <Divider marginTop='5' marginBottom='5' />
+          <Total register={register} total={total} totalPrice={totalPrice} />
+        </form>
+      </div>
+      <SuccessfulOrder
+        isOpen={isOpen}
+        onClose={onClose}
+        cancelRef={cancelRef}
+      />
+    </>
   )
 }
 

@@ -1,75 +1,32 @@
-import { Avatar, AvatarGroup, Divider } from '@chakra-ui/react'
-
+import { AnimatePresence } from 'framer-motion'
+import { Divider } from '@chakra-ui/react'
 import { HistoryOrder } from 'types/history-order'
-import { DB_URL } from 'utils/constants'
+import OrderBottom from './OrderBottom/OrderBottom'
+import OrderDescription from './OrderDescription/OrderDescription'
+import OrderTop from './OrderTop/OrderTop'
 import styles from './OrderItem.module.scss'
+import { useState } from 'react'
 
 interface Props {
   item: HistoryOrder
 }
 
 const OrderItem = ({ item }: Props) => {
-  const data = new Intl.DateTimeFormat('uk-UA').format(
-    new Date(Number(item.id))
-  )
+  const [isOpen, setOpen] = useState<boolean>(false)
 
   return (
     <div className={styles.order}>
-      <div>
-        <div>
-          <span>Замовлення</span>
-          <p>
-            №{item.id} <span>{data}</span>
-          </p>
-        </div>
-        <div>
-          <span>Сума замовлення</span>
-          <p>{item.total}</p>
-        </div>
-        <div>
-          <span>Оплачено</span>
-          <p>{item.details.payment}</p>
-        </div>
-      </div>
-      <Divider />
-      <div>
-        <ul>
-          <li>
-            <span>вулиця:</span> {item.details.street}
-          </li>
-          {item.details.house && (
-            <li>
-              <span>дім:</span> {item.details.house}
-            </li>
-          )}
-          {item.details.entrance && (
-            <li>
-              <span>під'їзд:</span> {item.details.entrance}
-            </li>
-          )}
-          {item.details.level && (
-            <li>
-              <span>поверх:</span> {item.details.level}
-            </li>
-          )}
-          {item.details.apartment && (
-            <li>
-              <span>квартира:</span> {item.details.apartment}
-            </li>
-          )}
-        </ul>
-        <div>
-          <AvatarGroup>
-            {item.order.map((product) => (
-              <Avatar
-                key={product.id}
-                name={product.product.title}
-                src={`${DB_URL}/${product.product.image}`}
-              />
-            ))}
-          </AvatarGroup>
-        </div>
-      </div>
+      <OrderTop item={item} isOpen={isOpen} setOpen={setOpen} />
+      <Divider marginTop='4' marginBottom='4' />
+      <OrderBottom item={item} />
+      <AnimatePresence>
+        {isOpen && (
+          <>
+            <Divider marginTop='3' marginBottom='3' />
+            <OrderDescription products={item.order} />
+          </>
+        )}
+      </AnimatePresence>
     </div>
   )
 }

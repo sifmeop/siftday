@@ -1,0 +1,18 @@
+.pagination {
+  @apply flex items-center justify-center gap-4;
+  & button {
+    @apply grid h-12 w-12 place-items-center;
+  }
+}
+
+.arrow {
+  @apply rounded-md bg-primary text-white;
+}
+
+.page {
+  @apply rounded-md border border-gray bg-white;
+}
+
+.active {
+  @apply border border-primary text-primary;
+}

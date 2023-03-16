@@ -1,0 +1,35 @@
+.product {
+  @apply grid items-center gap-16 font-inter font-semibold;
+  grid-template-columns: 1fr 1fr max-content 6.25rem;
+  &:not(:last-child) {
+    margin-bottom: 0.75rem;
+  }
+}
+
+.title {
+  @apply text-xl;
+}
+
+.image {
+  @apply flex items-center gap-4;
+}
+
+.additional {
+  @apply text-xs text-gray-dark;
+}
+
+.ingredient {
+  font-weight: 400;
+  &::before {
+    content: '•';
+    margin-right: 0.25rem;
+  }
+}
+
+.quantity {
+  @apply rounded-md bg-primary-more-light px-5 py-[0.625rem] text-primary;
+}
+
+.price {
+  @apply text-center text-primary;
+}
