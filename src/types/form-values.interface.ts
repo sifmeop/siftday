@@ -12,5 +12,4 @@ export interface FormValues {
   apartment: number
   payment: 'Готівка' | 'Картка'
   comment: string
-  promo_code: string
 }

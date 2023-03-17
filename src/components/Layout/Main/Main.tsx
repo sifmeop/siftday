@@ -1,4 +1,5 @@
 import clsx from 'clsx'
+import { memo } from 'react'
 import styles from './Main.module.scss'
 
 interface Props {
@@ -11,4 +12,4 @@ const Main = ({ children }: Props) => {
   )
 }
 
-export default Main
+export default memo(Main)

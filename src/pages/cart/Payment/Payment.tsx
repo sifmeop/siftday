@@ -1,6 +1,7 @@
 import { Radio, RadioGroup, Stack } from '@chakra-ui/react'
 import { Control, Controller, FieldErrors } from 'react-hook-form'
 
+import { memo } from 'react'
 import { FormValues } from 'types/form-values.interface'
 
 interface Props {
@@ -38,4 +39,4 @@ const Payment = ({ control, errors }: Props) => {
   )
 }
 
-export default Payment
+export default memo(Payment)

@@ -3,13 +3,9 @@
 }
 
 .footerContainer {
-  @apply flex items-center justify-between gap-3;
+  @apply flex justify-center;
 }
 
-.logo {
-  @apply flex items-center gap-2 transition-colors hover:text-primary;
-}
-
-.title {
-  @apply flex items-center gap-3 font-ubuntu text-2xl transition-colors hover:text-primary;
+.sifmeop {
+  @apply flex items-center gap-3 font-ubuntu text-2xl transition-colors duration-200 hover:text-primary active:text-primary-light;
 }

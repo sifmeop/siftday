@@ -10,11 +10,11 @@ import {
   signInWithEmailAndPassword,
   updateProfile
 } from 'firebase/auth'
+import { memo, useState } from 'react'
 import { BsEye, BsEyeSlash } from 'react-icons/bs'
 
 import { useActionCreators } from 'hooks/useActionCreators'
 import { useAuth } from 'hooks/useAuth'
-import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { userActions } from 'store/slices/userSlice'
@@ -27,7 +27,6 @@ interface Props {
 interface FormValues {
   name: string
   email: string
-  // phone: string
   password: string
 }
 
@@ -178,4 +177,4 @@ const Form = ({ type }: Props) => {
   )
 }
 
-export default Form
+export default memo(Form)

@@ -1,3 +1,3 @@
 .ingredients {
-  @apply flex items-stretch gap-5 text-center font-inter text-sm;
+  @apply flex items-stretch gap-5 overflow-x-auto whitespace-nowrap text-center font-inter text-sm;
 }

@@ -4,6 +4,9 @@
   &:not(:last-child) {
     margin-bottom: 0.75rem;
   }
+  @media (max-width: 425px) {
+    @apply grid-cols-1 gap-3 border-b border-b-gray pb-3;
+  }
 }
 
 .title {
@@ -28,6 +31,9 @@
 
 .quantity {
   @apply rounded-md bg-primary-more-light px-5 py-[0.625rem] text-primary;
+  @media (max-width: 425px) {
+    text-align: center;
+  }
 }
 
 .price {

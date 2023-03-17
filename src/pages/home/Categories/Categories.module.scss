@@ -1,5 +1,5 @@
 .categories {
-  @apply mb-7 flex w-full flex-nowrap items-stretch gap-5 overflow-x-auto overflow-y-hidden whitespace-nowrap;
+  @apply relative mb-7 flex w-full items-stretch gap-5 overflow-x-auto whitespace-nowrap;
 }
 
 .category {
@@ -19,6 +19,6 @@
 
 @media (max-width: 425px) {
   .category {
-    @apply flex-row;
+    @apply min-w-fit flex-row;
   }
 }

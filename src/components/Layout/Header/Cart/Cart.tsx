@@ -8,12 +8,13 @@ import {
   DrawerOverlay,
   useDisclosure
 } from '@chakra-ui/react'
+import { useAppDispatch, useAppSelector } from 'hooks/useRedux'
 
 import CartProduct from 'components/CartProduct/CartProduct'
-import { useAppSelector } from 'hooks/useRedux'
 import { useEffect } from 'react'
 import { FaShoppingCart } from 'react-icons/fa'
 import { NavLink } from 'react-router-dom'
+import { cartActions } from 'store/slices/cartSlice'
 import Button from 'ui/Button/Button'
 import { formatCurrency } from 'utils/formatCurrency'
 import styles from './Cart.module.scss'
@@ -23,6 +24,7 @@ const Cart = () => {
   const cart = useAppSelector((state) => state.cart.cart)
   const total = useAppSelector((state) => state.cart.total)
   const formattedAmount = formatCurrency(total)
+  const dispatch = useAppDispatch()
 
   useEffect(() => {
     if (!cart.length) {
@@ -45,7 +47,16 @@ const Cart = () => {
           </DrawerHeader>
           <DrawerBody>
             {cart.length ? (
-              cart.map((item) => <CartProduct key={item.id} item={item} />)
+              <>
+                <Button
+                  label='Очистити'
+                  style={{ display: 'block', margin: '0 0 1.5rem auto' }}
+                  onClick={() => dispatch(cartActions.clearCart())}
+                />
+                {cart.map((item) => (
+                  <CartProduct key={item.id} item={item} />
+                ))}
+              </>
             ) : (
               <h1>Замовлень немає</h1>
             )}

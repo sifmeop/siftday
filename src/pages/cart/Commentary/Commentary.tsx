@@ -1,6 +1,6 @@
-import { UseFormRegister } from 'react-hook-form'
-
 import { Textarea } from '@chakra-ui/react'
+import { memo } from 'react'
+import { UseFormRegister } from 'react-hook-form'
 import { FormValues } from 'types/form-values.interface'
 
 interface Props {
@@ -23,4 +23,4 @@ const Commentary = ({ register }: Props) => {
   )
 }
 
-export default Commentary
+export default memo(Commentary)

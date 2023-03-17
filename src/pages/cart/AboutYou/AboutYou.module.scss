@@ -1,3 +1,6 @@
 .aboutYou {
   @apply flex gap-5;
+  @media (max-width: 425px) {
+    @apply flex-col;
+  }
 }

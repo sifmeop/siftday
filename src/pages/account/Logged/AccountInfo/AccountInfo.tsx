@@ -15,10 +15,6 @@ const AccountInfo = () => {
         <li className={styles.item}>
           <span>Ім'я:</span> {auth?.currentUser?.displayName}
         </li>
-        {/* <li className={styles.item}> */}
-        {/* <span>Номер телефону:</span>{' '} */}
-        {/* {auth?.currentUser?.phoneNumber ?? 'Немає'} */}
-        {/* </li> */}
         <li className={styles.item}>
           <span>Пошта:</span> {auth?.currentUser?.email}
         </li>

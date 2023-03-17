@@ -1,9 +1,9 @@
+import { memo, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
 import { Divider } from '@chakra-ui/react'
 import { ReactComponent as Logo } from 'assets/image/favicon.svg'
 import { useAuth } from 'hooks/useAuth'
-import { useEffect } from 'react'
 import styles from './AuthForm.module.scss'
 import Form from './Form/Form'
 import GoogleAuth from './GoogleAuth/GoogleAuth'
@@ -48,4 +48,4 @@ const AuthForm = ({ type, analog }: Props) => {
   )
 }
 
-export default AuthForm
+export default memo(AuthForm)

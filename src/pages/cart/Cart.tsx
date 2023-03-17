@@ -2,20 +2,21 @@ import { Divider, useDisclosure } from '@chakra-ui/react'
 import { ref, set } from '@firebase/database'
 import { useAppDispatch, useAppSelector } from 'hooks/useRedux'
 
-import AboutYou from './AboutYou/AboutYou'
 import CartProduct from 'components/CartProduct/CartProduct'
+import { useAuth } from 'hooks/useAuth'
+import { useRef } from 'react'
+import { useForm } from 'react-hook-form'
+import { cartActions } from 'store/slices/cartSlice'
+import { FormValues } from 'types/form-values.interface'
+import Button from 'ui/Button/Button'
+import SuccessfulOrder from 'ui/SuccessfulOrder/SuccessfulOrder'
+import { db } from '../../../firebase'
+import AboutYou from './AboutYou/AboutYou'
+import styles from './Cart.module.scss'
 import Commentary from './Commentary/Commentary'
 import DeliveryType from './DeliveryType/DeliveryType'
-import { FormValues } from 'types/form-values.interface'
 import Payment from './Payment/Payment'
-import SuccessfulOrder from 'ui/SuccessfulOrder/SuccessfulOrder'
 import Total from './Total/Total'
-import { cartActions } from 'store/slices/cartSlice'
-import { db } from '../../../firebase'
-import styles from './Cart.module.scss'
-import { useAuth } from 'hooks/useAuth'
-import { useForm } from 'react-hook-form'
-import { useRef } from 'react'
 
 const Cart = () => {
   const auth = useAuth().auth
@@ -84,6 +85,11 @@ const Cart = () => {
         {cart.length ? (
           <>
             <h1 className={styles.title}>Ваше замовлення</h1>
+            <Button
+              label='Очистити'
+              style={{ display: 'block', margin: '0 0 1.5rem auto' }}
+              onClick={() => dispatch(cartActions.clearCart())}
+            />
             {cart.map((item) => (
               <CartProduct key={item.id} item={item} />
             ))}
@@ -100,7 +106,7 @@ const Cart = () => {
           <Divider marginTop='5' marginBottom='5' />
           <Commentary register={register} />
           <Divider marginTop='5' marginBottom='5' />
-          <Total register={register} total={total} totalPrice={totalPrice} />
+          <Total total={total} totalPrice={totalPrice} />
         </form>
       </div>
       <SuccessfulOrder

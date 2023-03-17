@@ -122,7 +122,11 @@ const ProductModal = ({ product, isOpen, onClose }: Props) => {
             Разом:{' '}
             {formatCurrency(pizzaPrice(size, product.price + ingredientsPrice))}
           </div>
-          <Button label='Додати' onClick={addToCart} padding='2.5rem' />
+          <Button
+            label='Додати'
+            onClick={addToCart}
+            style={{ paddingLeft: '2.5rem', paddingRight: '2.5rem' }}
+          />
         </ModalFooter>
       </ModalContent>
     </Modal>

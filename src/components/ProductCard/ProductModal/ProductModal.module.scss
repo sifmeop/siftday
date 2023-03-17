@@ -6,8 +6,12 @@
   @apply absolute top-5 left-0 rounded-r-md bg-red px-4 py-1 font-inter text-white;
 }
 
+.imageWrapper {
+  @apply h-80 w-[42%];
+}
+
 .sectionInfo {
-  @apply flex w-1/2 flex-col gap-5;
+  @apply flex w-[58%] flex-col gap-5;
 }
 
 .title {
@@ -16,10 +20,6 @@
 
 .description {
   @apply font-inter text-lg;
-}
-
-.imageWrapper {
-  @apply h-80 w-1/2;
 }
 
 .image {
@@ -31,7 +31,7 @@
 }
 
 .modalFooter {
-  @apply ml-auto w-1/2 gap-3;
+  @apply ml-auto w-[58%] gap-3;
   justify-content: space-between !important;
   @media (max-width: 425px) {
     @apply w-full;

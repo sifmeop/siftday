@@ -1,7 +1,10 @@
 .deliveryType {
-  @apply flex justify-between gap-2;
+  @apply mb-6 flex flex-wrap justify-between gap-2;
 }
 
 .address {
   @apply mt-4 flex gap-2;
+  @media (max-width: 425px) {
+    @apply flex-col;
+  }
 }

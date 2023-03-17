@@ -1,11 +1,12 @@
-import { AnimatePresence } from 'framer-motion'
+import { memo, useState } from 'react'
+
 import { Divider } from '@chakra-ui/react'
+import { AnimatePresence } from 'framer-motion'
 import { HistoryOrder } from 'types/history-order'
 import OrderBottom from './OrderBottom/OrderBottom'
 import OrderDescription from './OrderDescription/OrderDescription'
-import OrderTop from './OrderTop/OrderTop'
 import styles from './OrderItem.module.scss'
-import { useState } from 'react'
+import OrderTop from './OrderTop/OrderTop'
 
 interface Props {
   item: HistoryOrder
@@ -31,4 +32,4 @@ const OrderItem = ({ item }: Props) => {
   )
 }
 
-export default OrderItem
+export default memo(OrderItem)

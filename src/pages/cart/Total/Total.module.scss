@@ -1,5 +1,8 @@
 .section {
   @apply flex items-center justify-between gap-3;
+  @media (max-width: 425px) {
+    @apply flex-col;
+  }
 }
 
 .total {
@@ -8,18 +11,6 @@
 
 .left {
   @apply flex flex-col gap-3;
-}
-
-.promocode {
-  @apply relative flex;
-}
-
-.input {
-  padding-right: 4rem !important;
-}
-
-.button {
-  @apply absolute right-0 z-10 flex h-12 w-12 cursor-pointer items-center justify-center rounded-md bg-primary text-white transition-colors hover:bg-primary-light active:bg-primary-dark;
 }
 
 .description {

@@ -14,20 +14,6 @@ const Header = () => {
             <Logo />
             <h1 className={styles.title}>siftday</h1>
           </Link>
-          {/* <div className={styles.categories}>
-            {products.map((product) => (
-              <LinkScroll
-                to={product.type}
-                className='cursor-pointer'
-                activeClass='text-primary'
-                spy={true}
-                smooth={true}
-                duration={500}
-                key={product.id}>
-                {product.category}
-              </LinkScroll>
-            ))}
-          </div> */}
         </div>
         <div className={styles.headerItems}>
           <Cart />

@@ -5,7 +5,7 @@ import {
   NumberInputField,
   NumberInputStepper
 } from '@chakra-ui/react'
-import { useEffect, useState } from 'react'
+import { memo, useEffect, useState } from 'react'
 import {
   Control,
   Controller,
@@ -138,4 +138,4 @@ const DeliveryType = ({ register, control, errors }: Props) => {
   )
 }
 
-export default DeliveryType
+export default memo(DeliveryType)

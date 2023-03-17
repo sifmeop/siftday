@@ -1,9 +1,10 @@
 import { Dough, Product, Size } from 'types/product.interface'
 
-import { DB_URL } from 'utils/constants'
-import { IngredientTitle } from 'types/Ingredient.interface'
-import { formatCurrency } from 'utils/formatCurrency'
 import { motion } from 'framer-motion'
+import { memo } from 'react'
+import { IngredientTitle } from 'types/Ingredient.interface'
+import { DB_URL } from 'utils/constants'
+import { formatCurrency } from 'utils/formatCurrency'
 import { productPluralForm } from 'utils/productPluralForm'
 import styles from './OrderDescription.module.scss'
 
@@ -72,4 +73,4 @@ const OrderDescription = ({ products }: Props) => {
   )
 }
 
-export default OrderDescription
+export default memo(OrderDescription)

@@ -3,7 +3,10 @@
 }
 
 .top {
-  @apply mb-5 flex items-center justify-between gap-2;
+  @apply mb-5 flex items-center justify-between gap-3;
+  @media (max-width: 425px) {
+    @apply flex-col;
+  }
 }
 
 .title {

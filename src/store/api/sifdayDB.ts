@@ -11,8 +11,13 @@ export const siftdayDB = createApi({
       query: ({ type }) => ({
         url: `/${type}`
       })
+    }),
+    checkPromo: build.query<{ result: boolean }, { value: string }>({
+      query: ({ value }) => ({
+        url: `/promo/${value}`
+      })
     })
   })
 })
 
-export const { useGetProductsQuery } = siftdayDB
+export const { useGetProductsQuery, useLazyCheckPromoQuery } = siftdayDB

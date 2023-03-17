@@ -2,6 +2,7 @@ import { FormLabel, Input } from '@chakra-ui/react'
 import { FieldErrors, UseFormRegister } from 'react-hook-form'
 
 import { useAuth } from 'hooks/useAuth'
+import { memo } from 'react'
 import { FormValues } from 'types/form-values.interface'
 import styles from './AboutYou.module.scss'
 
@@ -89,4 +90,4 @@ const AboutYou = ({ register, errors }: Props) => {
   )
 }
 
-export default AboutYou
+export default memo(AboutYou)

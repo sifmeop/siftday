@@ -1,13 +1,13 @@
 import { onValue, ref } from 'firebase/database'
 import { useEffect, useState } from 'react'
 
+import { useAuth } from 'hooks/useAuth'
+import { usePagination } from 'hooks/usePagination'
 import { HistoryOrder } from 'types/history-order'
-import OrderItem from './OrderItem/OrderItem'
 import Pagination from 'ui/Pagination/Pagination'
 import { db } from '../../../../../firebase'
 import styles from './HistoryOrders.module.scss'
-import { useAuth } from 'hooks/useAuth'
-import { usePagination } from 'hooks/usePagination'
+import OrderItem from './OrderItem/OrderItem'
 
 const HistoryOrders = () => {
   const auth = useAuth().auth
