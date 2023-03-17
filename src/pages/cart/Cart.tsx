@@ -37,8 +37,19 @@ const Cart = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const cancelRef = useRef(null)
 
+  const afterEndOrder = () => {
+    reset()
+    dispatch(cartActions.clearCart())
+    onOpen()
+  }
+
   const onSubmit = async (data: FormValues) => {
     console.log(data)
+    if (!auth.currentUser) {
+      afterEndOrder()
+      return
+    }
+
     const id = Date.now()
     const reference = ref(db, 'orders/' + auth.currentUser!.uid + '/' + id)
     try {
@@ -69,10 +80,7 @@ const Cart = () => {
         total: totalPrice()
       }
       await set(reference, result).then(() => {
-        console.log('success')
-        reset()
-        dispatch(cartActions.clearCart())
-        onOpen()
+        afterEndOrder()
       })
     } catch (e) {
       console.log(e)

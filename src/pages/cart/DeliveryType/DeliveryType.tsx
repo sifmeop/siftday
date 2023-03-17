@@ -65,15 +65,18 @@ const DeliveryType = ({ register, control, errors }: Props) => {
       <div className={styles.address}>
         <div>
           <FormLabel className='cartLabel' htmlFor='house'>
-            Дім
+            Дім*
           </FormLabel>
+          {errors.house && (
+            <span className='text-red'>Введіть, будь ласка, номер будинку</span>
+          )}
           <Input
             id='house'
             size='lg'
             focusBorderColor='#FF7010'
             backgroundColor='white'
             placeholder='1а'
-            {...register('house')}
+            {...register('house', { required: true, minLength: 1 })}
           />
         </div>
         <div>

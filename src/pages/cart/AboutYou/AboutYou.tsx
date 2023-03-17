@@ -62,7 +62,7 @@ const AboutYou = ({ register, errors }: Props) => {
         </div>
         <div>
           <FormLabel className='cartLabel' htmlFor='email'>
-            Почта
+            Почта*
           </FormLabel>
           {errors.email && (
             <span className='text-red'>Невірна адреса пошти</span>
