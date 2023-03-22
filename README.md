@@ -1,6 +1,6 @@
 # siftday
 
-Music platform using React, TS, SCSS, Tailwind, Chakra UI, Redux Toolkit, RTQ Query, React Hook Form
+Music platform using React, TS, SCSS, Tailwind, Chakra UI, Redux Toolkit, RTQ Query, React Hook Form, Nest, Prisma, MongoDB
 
 ## Run Locally
 
