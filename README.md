@@ -7,13 +7,13 @@ Music platform using React, TS, SCSS, Tailwind, Chakra UI, Redux Toolkit, RTQ Qu
 Clone the project
 
 ```bash
-  git clone https://github.com/sifmeop/siftdos.git
+  git clone https://github.com/sifmeop/siftday.git
 ```
 
 Go to the project directory
 
 ```bash
-  cd siftdos
+  cd siftday
 ```
 
 Install dependencies
